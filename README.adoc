@@ -1,0 +1,3 @@
+= tex-templates
+
+Contains templates used for publications and other printed matters.
