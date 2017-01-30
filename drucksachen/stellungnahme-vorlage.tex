@@ -1,0 +1,101 @@
+\documentclass[a4paper]{article}
+
+\usepackage{a4wide}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{eurosym}
+\usepackage{calc}
+\usepackage{hyperref}
+\usepackage{charter}
+\usepackage{tabularx}
+\usepackage{float}
+\pagestyle{fancy}
+\topmargin -10mm
+\headheight 19mm
+
+\parindent 0pt
+\parskip 1ex
+
+% path to logos and other resources
+% TODO: add path for figures
+\graphicspath{{./resources/}}
+
+% headers and footers
+\fancyhf{} % sets both header and footer to nothing
+\renewcommand{\headrulewidth}{0pt}
+\lhead{
+ 	\includegraphics[height=1.5cm]{fsrlogo}
+}
+\rhead{
+	\flushright	\textbf{Drucksache 2017\,/\,I}\\
+	nach Beschl. 2017\,/\,05}
+	
+\cfoot{\arabic{page}}
+
+
+\begin{document}
+\begin{titlepage}
+	\centering
+	\includegraphics[width=.3\textwidth]{LogoSW}
+
+	\vspace{1cm}
+	{\scshape \LARGE Fachschaftsrat Informatik\par}
+	Technische Universität Dresden
+
+	\vspace{1cm}
+	Webseite: \url{https://www.ifsr.de} \\
+	E-Mail: \texttt{fsr@ifsr.de} \\
+	Telefon: \texttt{0351\,/\,463 38 226}
+
+	\parbox{.8\textwidth}{	
+		\vspace{1cm}
+		\hfill Dresden, den DD.MM.YYYY % Datum der Veröffentlichung
+		
+	\vspace{1cm}
+	% Format
+	% Beschlüsse: YYYY / <arabic number of resolution>
+	% Drucksachen: YYYY / <roman number of printed matter>
+		Der Fachschaftsrat Informatik veröffentlicht hiermit, ausgehend vom Beschluss YYYY\,/\,AA, getroffen in seiner X. Sitzung am Weekday, den DD. Month YYYY, die beigefügte \textbf{Drucksache YYYY\,/\,RR}.\flushleft
+		
+	% Bei mehreren Personen: Aufzählung mit abschließendem "und" ohne voranstehendes Oxford-Komma
+		Verfasst von ...\\
+
+\vspace{2cm}
+	% TODO: Anpassen!!!
+	% Nach der noch zu erstellenden Fachschaftsordnung müssen mindestens zwei gew. Mitglieder der Geschäftsführer unterschreiben, d.h. der Gruppe der Sprecher und Finanzer
+	% Kombinationen: S,S / S,F / F,F
+	NAME\,/\,1. Sprecher \hfill NAME\,/\,1. Finanzer\\
+	\vspace{.6cm}}
+
+\end{titlepage}
+
+\newpage{}
+
+\begin{center}
+    \textbf{\Large Stellungnahme zu ...}
+\end{center}
+
+
+Hier Stellung beziehen! Im ersten Paragraphen ohne Einrückung.
+
+\paragraph{} Weiter Stellung beziehen mit Einrückung.
+
+\vspace{1cm}
+Im Namen der Fachschaft Informatik,
+
+Der Fachschaftsrat
+
+
+
+\begin{figure}[b]
+\footnotesize
+\line(1,0){150}
+\begin{description}
+	\item [\texttt{[1]}] Eventuelle Referenz.\\
+		\url{https://mit-links.de}
+\end{description}
+\end{figure}
+
+\end{document}
