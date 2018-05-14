@@ -1,0 +1,97 @@
+%dontbuild
+\documentclass{fsrprotokoll}
+
+
+% Das %dontbuild muss _allein_ auf der ersten Zeile stehen.
+% Sobald es entfernt ist, wird ein Protokoll mit dem Namen
+% "Protokoll DD.MM.YYYY" automatisch gebaut und auf den FTP
+% geschoben. Das Protokoll mit dem neusten Datum wird
+% außerdem unter latest verlinkt.
+
+
+\begin{document}
+
+%%!sitzungsleitung,protokoll: Das Protokoll ist fertig und kann unterschrieben werden! :)
+
+\date{}  % DD.MM.YYYY
+\attendeesNumber{}  % Anzahl anwesender Mitglieder
+\chairperson{}
+\clerks{}
+\meetingStart{}  % HH:MM
+\meetingEnd{}  % HH:MM
+% Liste anwesender Mitglieder
+\attendees{}
+\excused{}
+\unexcused{}
+% Liste Ruhender
+\resting{}
+% Liste anwesender Gäste
+\guests{Matthias Stuhlbein}
+
+\maketitle
+
+\section{Protokollkontrolle und Überprüfung gefasster Beschlüsse}
+% Es gibt nichts zu beanstanden, das Protokoll vom XX.YY.ZZZZ wird bestätigt.
+
+% \section{Gäste}
+
+\section{Bericht Struktur}
+
+\section{Bericht über die Finanzen}
+
+% \section{Berichte aus den Gremien}
+% \subsection{Studierendenrat (StuRa)}
+
+% \subsection{Fakultätsrat (FR)}
+
+\section{Stand der Veranstaltungen}
+
+\section{Weitere anstehende Termine}
+
+\section{Öffentlichkeitsarbeit}
+
+\section{Sonstiges}
+
+\signature
+
+
+% % Die Reihenfolge muss beibehalten werden.
+% \begin{vote}
+% %   \voteMoney{}  % {Betrag (ohne \EUR)} nur bei Finanzantrag
+%   \voteNumber{}  % {#Antrag}
+%   \voteText{}
+%   \voteReason{}
+%   \voting{}{}{}  % {#Dafür}{#Dagegen}{#Enth.}, leer lassen für 'ohne Gegenrede angenommen'
+%   \voteComment{}  % optional
+% \end{vote}
+
+% \begin{poll}
+%   \pollText{}
+%   \voting{}{}  % {#Dafür}{#Dagegen}
+% \end{poll}
+
+% \appear{eintreffende Person(en)}
+% \away{Sitzung verlassende Person(en)}
+% \EUR{#Betrag} <- Bitte ausschließlich so Geldbeträge in Euro angeben
+
+% KEIN \emph, \textbf, o.ä. in (sub)section titles! (breaks accessibilityMeta package)
+% Bitte vorzugsweise \section{} und \subsection{} benutzen. Außerdem bitte den
+% Gebrauch  von line breaks (\\) einschränken und sollte tatsächlich Bedarf nach
+% mehr Struktur bestehen, vorzugsweise eine leere Zeile bzw. \par verwenden.
+
+% Sollten beim Bauen Fehler auftreten, wird eine Mail an strukturer@ifsr.de
+% geschickt. Bei erfolgreichem Build wird das Protokoll direkt an den
+% Simplexdrucker gesendet.
+
+% Zeilen die mit %%!<usernamelist>: Todotext beginnen enthalten Todos eine
+% Beispielzeile sieht folgendermassen aus:
+% %!marius,frank,strukturer:Organisation von Event nicht vergessen
+% (Leerzeichen zwischen den beiden % darf nicht drin sein!!)
+% TODOs werden automatisch beim Bauen an die aufgezählten namen@ifsr.de
+% versendet
+
+% Bei einem geheimen Sitzungsteil bitte Pad 1340 (Protokollvorlage geheimer
+% Sitzungsteil) beachten bzw. verwenden.
+
+\end{document}
+
