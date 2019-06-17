@@ -13,6 +13,7 @@
 \RequirePackage{xparse}
 \RequirePackage{tabularx}
 \RequirePackage[hidelinks]{hyperref}
+\RequirePackage[autostyle=true,german=quotes]{csquotes}
 % https://github.com/AndyClifton/AccessibleMetaClass/blob/master/accessibilityMeta.sty
 \RequirePackage[tagged]{accessibilityMeta}
 
@@ -23,7 +24,7 @@
 
 \titleformat{\section}
   {\large\rmfamily\bfseries}
-  {\thesection.}{0.5em}{}
+  {\thesection.}{0.5em}{}%
 \titlespacing{\section}
   {0pt}
   {*1}
@@ -74,6 +75,18 @@
   }
 }
 
+\newcommand*{\quorum}[2] {
+  \newcount\quorateThreshold
+  \quorateThreshold=#2
+  Es sind #1 von #2 Mitgliedern mit aktivem Stimmrecht anwesend.
+  \divide\quorateThreshold by 2
+  \ifthenelse{#1 > \the\quorateThreshold\relax} {%
+     Der FSR ist somit beschlussfähig.%
+  } {%
+    Der FSR ist somit nicht beschlussfähig.%
+  }
+}
+
 % titlepage
 \renewcommand*{\maketitle}{%
   \begin{titlepage}%
@@ -88,7 +101,7 @@
       Sitzungsbeginn: \the\meetingStart \,| Sitzungsende: \the\meetingEnd%
     \end{center}%
 
-    \textbf{Anwesende:} \the\attendees \, (\the\attendeesNumber \, von 17)%
+    \textbf{Anwesende:} \the\attendees% \, (\the\attendeesNumber \, von 17)%
 
     \textbf{Entschuldigt Fehlende:} \ifthenelse{\equal{\the\excused}{}} { $\emptyset$ } { \the\excused }%
 
@@ -98,8 +111,7 @@
 
     \textbf{Gäste:} \ifthenelse{\equal{\the\guests}{}} { $\emptyset$ } { \the\guests }%
     \vspace{\baselineskip}
-
-    \quorate  % automatische Feststellung der Beschlussfähigkeit
+    %\quorate  % automatische Feststellung der Beschlussfähigkeit
   \end{titlepage}%
   \hypersetup{%
     pdfauthor=Fachschaftsrat Informatik,
@@ -145,7 +157,7 @@
       \textbf{Standpunkt: } ##1\vspace{\baselineskip}\\%
     }%
     \newcommand*{\voting}[2]{%
-      \textbf{Meinungsbild: } Dafür: ##2, Dagegen: ##2%
+      \textbf{Meinungsbild: } Dafür: ##1, Dagegen: ##2%
     }%
 } {
   \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
@@ -184,3 +196,4 @@
 \newtoks\resting
 \newtoks\guests
 \endinput
+
