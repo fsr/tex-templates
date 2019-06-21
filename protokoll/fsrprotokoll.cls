@@ -1,3 +1,4 @@
+% vim: ft=tex
 \ProvidesClass{fsrprotokoll}[2018/03/05 Klasse fuer FSR Protokolle v0.2]
 \LoadClass{scrartcl}
 
@@ -125,7 +126,10 @@
 \newcounter{x}  % counter to add up two arguments
 \newenvironment{vote} {%
   \begin{lrbox}{\mybox}\begin{minipage}{.985\textwidth}
-  \newcommand*{\voteNumber}[1]{\textbf{\the\year\,/\,##1:}\\}%
+  \newcommand*{\voteNumber}[1]{%
+    \immediate\write\exportdata{\the\year/##1}%
+    \textbf{\the\year\,/\,##1:}\\%
+  }%
   \newcommand*{\voteMoney}[1]{%
     \ifthenelse{\equal{##1}{}} {\textbf{Antrag}} {\textbf{Finanzantrag}}%
   }
@@ -148,6 +152,8 @@
   \newcommand*{\voteComment}[1]{##1}%
 } {
   \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
+  \immediate\write\exportdata{
+  }%
 }
 
 % poll environment
@@ -181,6 +187,16 @@
   \vfill
   \noindent\rule{6.5cm}{0.3pt} \hfill \noindent\rule{6.5cm}{0.3pt}
   \noindent\makebox[6.5cm][l]{Sitzungsleitung} \hfill \noindent\makebox[6.5cm][l]{Protokoll}
+}
+
+\AtBeginDocument{%
+  \immediate\newwrite\exportdata%
+  \immediate\openout\exportdata=tmp.txt\relax
+}
+
+\AtEndDocument{%
+  \immediate\write18{mv tmp.txt \the\date.txt}
+  \immediate\closeout\exportdata%
 }
 
 % tokens
