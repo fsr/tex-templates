@@ -125,35 +125,60 @@
 \newsavebox{\mybox}
 \newcounter{x}  % counter to add up two arguments
 \newenvironment{vote} {%
+    \immediate\write\exportdata{-}
   \begin{lrbox}{\mybox}\begin{minipage}{.985\textwidth}
   \newcommand*{\voteNumber}[1]{%
-    \immediate\write\exportdata{\the\year/##1}%
+    \immediate\write\exportdata{  decision_id: "\the\year/##1"}%
     \textbf{\the\year\,/\,##1:}\\%
   }%
   \newcommand*{\voteMoney}[1]{%
-    \ifthenelse{\equal{##1}{}} {\textbf{Antrag}} {\textbf{Finanzantrag}}%
+    \ifthenelse{\equal{##1}{}} {%
+        \immediate\write\exportdata{  money_limit: NULL}%
+        \textbf{Antrag}%
+    } {%
+        \immediate\write\exportdata{  money_limit: ##1}%
+        \textbf{Finanzantrag}%
+    }%
   }
-  \newcommand*{\voteText}[1]{##1\vspace{\baselineskip}\\}%
-  \newcommand*{\voteReason}[1]{\textbf{Begründung: }##1\vspace{\baselineskip}\\}%
+  \newcommand*{\voteText}[1]{%
+      \immediate\write\exportdata{  text: "##1"}%
+      ##1\vspace{\baselineskip}\\}%
+  \newcommand*{\voteReason}[1]{%
+      \immediate\write\exportdata{  rationale: "##1"}%
+      \textbf{Begründung: }##1\vspace{\baselineskip}\\}%
   \newcommand*{\voting}[3]{\textbf{Abstimmung: }%
     \ifthenelse{\equal{##1}{} \AND \equal{##2}{} \AND \equal{##3}{}} {%
+        \immediate\write\exportdata{  v_yes: 0}%
+        \immediate\write\exportdata{  v_no: 0}%
+        \immediate\write\exportdata{  v_neutral: 0}%
+        \immediate\write\exportdata{  accepted: 1}%
       Der Antrag wurde ohne Gegenrede angenommen.%
     } {%
+        \immediate\write\exportdata{  v_yes: ##1}%
+        \immediate\write\exportdata{  v_no: ##2}%
+        \immediate\write\exportdata{  v_neutral: ##3}%
       Dafür: ##1, Dagegen: ##2, Enthaltungen: ##3%
       \\%
       \setcounter{x}{##2+##3}%
       \ifnum##1>\arabic{x}%
-        {Der Antrag wurde angenommen.}%
+        {%
+            \immediate\write\exportdata{  accepted: 1}%
+            Der Antrag wurde angenommen.
+        }%
       \else%
-        {Der Antrag wurde abgelehnt.}%
+        {
+            \immediate\write\exportdata{  accepted: 0}%
+            Der Antrag wurde abgelehnt.
+        }%
       \fi%
     }%
   }%
-  \newcommand*{\voteComment}[1]{##1}%
+  \newcommand*{\voteComment}[1]{%
+      \immediate\write\exportdata{  comment: "##1"}%
+        ##1
+      }%
 } {
   \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
-  \immediate\write\exportdata{
-  }%
 }
 
 % poll environment
@@ -195,7 +220,7 @@
 }
 
 \AtEndDocument{%
-  \immediate\write18{mv tmp.txt \the\date.txt}
+  \immediate\write18{mv tmp.txt \the\date.yaml}
   \immediate\closeout\exportdata%
 }
 
