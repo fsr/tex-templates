@@ -140,7 +140,7 @@
         \textbf{Finanzantrag}%
     }%
   }
-  \newcommand*{\voteText}[1]{%
+  \newcommand{\voteText}[1]{%
       \immediate\write\exportdata{  text: "##1"}%
       ##1\vspace{\baselineskip}\\}%
   \newcommand*{\voteReason}[1]{%
