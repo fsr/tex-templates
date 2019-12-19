@@ -143,6 +143,9 @@
   \newcommand{\voteText}[1]{%
       \immediate\write\exportdata{  text: "##1"}%
       ##1\vspace{\baselineskip}\\}%
+  \newcommand*{\voteSubmitter}[1]{%
+      \immediate\write\exportdata{  submitter: "##1"}%
+      \textbf{Antragsteller\_in: }##1\vspace{\baselineskip}\\}%
   \newcommand*{\voteReason}[1]{%
       \immediate\write\exportdata{  rationale: "##1"}%
       \textbf{Begründung: }##1\vspace{\baselineskip}\\}%
