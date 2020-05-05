@@ -1,0 +1,3 @@
+[submodule "anwesenheitsliste"]
+	path = anwesenheitsliste
+	url = https://git.ifsr.de/struktur/anwesenheitsliste.git
