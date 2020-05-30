@@ -184,6 +184,63 @@
   \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
 }
 
+\newenvironment{vote-two-thirds} {%
+    \immediate\write\exportdata{-}
+  \begin{lrbox}{\mybox}\begin{minipage}{.985\textwidth}
+  \newcommand*{\voteNumber}[1]{%
+    \immediate\write\exportdata{  decision_id: "\the\year/##1"}%
+    \textbf{\the\year\,/\,##1:}\\%
+  }%
+  \newcommand*{\voteMoney}[1]{%
+    \ifthenelse{\equal{##1}{}} {%
+        \immediate\write\exportdata{  money_limit: NULL}%
+        \textbf{Antrag}%
+    } {%
+        \immediate\write\exportdata{  money_limit: ##1}%
+        \textbf{Finanzantrag}%
+    }%
+  }
+  \newcommand*{\voteText}[1]{%
+      \immediate\write\exportdata{  text: "##1"}%
+      ##1\vspace{\baselineskip}\\}%
+  \newcommand*{\voteReason}[1]{%
+      \immediate\write\exportdata{  rationale: "##1"}%
+      \textbf{Begründung: }##1\vspace{\baselineskip}\\}%
+  \newcommand*{\voting}[3]{\textbf{Abstimmung: }%
+    \ifthenelse{\equal{##1}{} \AND \equal{##2}{} \AND \equal{##3}{}} {%
+        \immediate\write\exportdata{  v_yes: 0}%
+        \immediate\write\exportdata{  v_no: 0}%
+        \immediate\write\exportdata{  v_neutral: 0}%
+        \immediate\write\exportdata{  accepted: 1}%
+      Der Antrag wurde ohne Gegenrede angenommen.%
+    } {%
+        \immediate\write\exportdata{  v_yes: ##1}%
+        \immediate\write\exportdata{  v_no: ##2}%
+        \immediate\write\exportdata{  v_neutral: ##3}%
+      Dafür: ##1, Dagegen: ##2, Enthaltungen: ##3%
+      \\%
+      \setcounter{x}{((\the\attendeesNumber)/3)*2}%
+      \ifnum##1>\arabic{x}%
+        {%
+            \immediate\write\exportdata{  accepted: 1}%
+            Der Antrag wurde mit einer 2/3 Mehrheit angenommen.
+        }%
+      \else%
+        {
+            \immediate\write\exportdata{  accepted: 0}%
+            Der Antrag wurde abgelehnt, da keine 2/3 Mehrheit zustande kam.
+        }%
+      \fi%
+    }%
+  }%
+  \newcommand*{\voteComment}[1]{%
+      \immediate\write\exportdata{  comment: "##1"}%
+        ##1
+      }%
+} {
+  \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
+}
+
 % poll environment
 \newenvironment{poll} {%
   \begin{lrbox}{\mybox}\begin{minipage}{.985\textwidth}
