@@ -4,3 +4,7 @@
 [submodule "zugangsberechtigung"]
 	path = zugangsberechtigung
 	url = git@ifsr.de:struktur/zugangsberechtigung.git
+[submodule "protokoll-geheim"]
+	path = protokoll-geheim
+	url = git@ifsr.de:struktur/protokoll-geheim.git
+
