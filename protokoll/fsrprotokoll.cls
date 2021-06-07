@@ -13,9 +13,6 @@
 \RequirePackage{expl3}
 \RequirePackage{xparse}
 \RequirePackage{tabularx}
-\usepackage{draftwatermark}
-\SetWatermarkText{ENTWURF}
-\SetWatermarkScale{3.5}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage[autostyle=true,german=quotes]{csquotes}
 % https://github.com/AndyClifton/AccessibleMetaClass/blob/master/accessibilityMeta.sty
