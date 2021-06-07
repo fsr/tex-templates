@@ -13,6 +13,9 @@
 \RequirePackage{expl3}
 \RequirePackage{xparse}
 \RequirePackage{tabularx}
+\usepackage{draftwatermark}
+\SetWatermarkText{ENTWURF}
+\SetWatermarkScale{3.5}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage[autostyle=true,german=quotes]{csquotes}
 % https://github.com/AndyClifton/AccessibleMetaClass/blob/master/accessibilityMeta.sty
@@ -37,6 +40,13 @@
   {0pt}
   {*0.5}
   {-5pt}
+\titleformat{\subsubsection}
+  {\normalfont\rmfamily\bfseries}
+  {}{0em}{}
+\titlespacing{\subsubsection}
+  {0pt}
+  {*0.5}
+  {-9pt}
 
 \makeatletter
 \newcommand*{\insertheaderrule}{\rlap{\rule[-.5\normalbaselineskip]{\textwidth}{.4pt}}}
